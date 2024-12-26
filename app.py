@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, redirect, url_for
+from flask import Flask, render_template, request, send_file, redirect, url_for, send_from_directory
 import yt_dlp as ytdl
 import os
 
@@ -14,7 +14,7 @@ sequence_counter = 1
 
 @app.route('/')
 def index():
-    return render_template('index.html')  # Renders the input form for links
+    return send_from_directory(os.getcwd(), 'index.html')  # Explicitly serving index.html from the root
 
 
 @app.route('/download', methods=['POST'])
@@ -26,16 +26,14 @@ def download():
 
         # yt-dlp configuration
         ydl_opts = {
-    'format': 'bestvideo[height=1080]+bestaudio/best',  # Ensures 1080p video
-    'merge_output_format': 'mp4',  # Final format
-    'postprocessor_args': ['-c', 'copy'],  # Copy streams, no re-encoding
-    'outtmpl': os.path.join(
-        DOWNLOAD_FOLDER,
-        f'# {sequence_counter} - %(title)s.%(ext)s'  # Numbered file name
-    ),
-}
-
-
+            'format': 'bestvideo[height=1080]+bestaudio/best',  # Ensures 1080p video
+            'merge_output_format': 'mp4',  # Final format
+            'postprocessor_args': ['-c', 'copy'],  # Copy streams, no re-encoding
+            'outtmpl': os.path.join(
+                DOWNLOAD_FOLDER,
+                f'# {sequence_counter} - %(title)s.%(ext)s'  # Numbered file name
+            ),
+        }
 
         # Download video
         with ytdl.YoutubeDL(ydl_opts) as ydl:

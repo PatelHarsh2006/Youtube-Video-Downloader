@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <style>
+        label {
+            font-size: 35px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        h1 {
+            font-size: 80px;
+            color: rgb(255, 0, 0);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+
+<body bgcolor="#fce6e6">
+    <center>
+        <h1>YouTube Downloader</h1>
+        <br><br><br><br>
+        <form action="/download" method="post" target="_blank">
+            <!-- Opens in a new tab -->
+            <label for="url">Enter YouTube Video Link : </label>
+            <input type="text" id="url" name="url" required style="width: 400px; height: 38px; border-radius: 10px;">
+            <br><br><br><br>
+            <button type="submit" style="border-radius: 5px; width: 240px; height: 53px; background-color: rgb(140, 255, 0); font-size: 30px; font-weight: 400;">Download</button>
+        </form>
+    </center>
+</body>
+
+</html>
